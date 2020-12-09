@@ -1,3 +1,18 @@
 <html>
-Hello! {{ans}}
+    <script type="text/javascript"> 
+        var listOfPermissionLevels = "{{listOfPermissionLevels}}";
+        console.log(listOfPermissionLevels);
+     </script>
+     
+    <body>
+        <h1>Activity Mapping</h1>
+        {{activityMapping}}
+        <br/>
+        <h1>Activity based permission mapping</h1>
+        {{activityMappingPermissions}}
+        <br/>
+        <h1>Levels of security for permisisons</h1>
+        {{listOfPermissionLevels}}
+        <!-- {{listOfPermissions}} -->
+    </body>
 </html>

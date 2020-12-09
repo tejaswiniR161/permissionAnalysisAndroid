@@ -11,13 +11,14 @@ PScout = open('./Permissions/PScout_Permission.txt', 'r')
 PScoutLines = PScout.readlines() 
 
 listOfPermissions=[]
+PermissionLevels={}
 listOfCustomPermissions=[]
 protectionLevelForCustomPermissions=[]
 listOfServices=[]
 listOfActivities=[]
 listOfReceivers=[]
 activityMapping={}
-activityPermissions={}
+#activityPermissions={}
 functionsBasedOnPermissionMappingInitial={}
 relativeDecompiledPath=""
 unopenableActivityJava=[]
@@ -29,12 +30,71 @@ activityMappingPermissions={}
 activityMappingFunctions=[]
 
 def index(request):
-    print("cwd = ",os.getcwd())
+    #print("cwd = ",os.getcwd())
+    global listOfPermissions
+    global listOfPermissions
+    global listOfCustomPermissions
+    global protectionLevelForCustomPermissions
+    global listOfServices
+    global listOfActivities
+    global listOfReceivers
+    global activityMapping
+    #global activityPermissions
+    global functionsBasedOnPermissionMappingInitial
+    global relativeDecompiledPath
+    global unopenableActivityJava
+    global openableActivityJava
+
+    global activityMappingNames
+    global activityMappingPermissions
+    global activityMappingFunctions
+
+
+    listOfPermissions=[]
+    listOfCustomPermissions=[]
+    protectionLevelForCustomPermissions=[]
+    listOfServices=[]
+    listOfActivities=[]
+    listOfReceivers=[]
+    activityMapping={}
+    #activityPermissions={}
+    functionsBasedOnPermissionMappingInitial={}
+    relativeDecompiledPath=""
+    unopenableActivityJava=[]
+    openableActivityJava=[]
+
+    activityMappingNames={}
+    activityMappingPermissions={}
+    activityMappingFunctions=[]
+
     #MODIFY_PHONE_STATE
     #ans=read_and_map("CAMERA")
     parse_manifest()
     gather_permissions_per_activity()
-    return render(request,'index.html',{"ans":activityMappingPermissions})
+
+    find_security_per_permission()
+
+    return render(request,'index.html',{"activityMapping":activityMapping,"activityMappingPermissions":activityMappingPermissions,"listOfPermissionLevels":PermissionLevels,"listOfPermissions":listOfPermissions})
+
+def find_security_per_permission():
+    securityPermissionFile=open("./securityLevelPermissions.txt")
+    fileContent=securityPermissionFile.readlines()
+    for permission in listOfPermissions:
+        level=""
+        found=0
+        for fc in fileContent:
+            if fc.find(permission)!=-1:
+                level=fc.split(";")
+                level=level[-1]
+                level=level.split("|")
+                found=1
+                break
+        if found==1:
+            PermissionLevels[permission]=level[0].strip()
+        else:
+            PermissionLevels[permission]="notfound"
+                
+
 
 def gather_permissions_per_activity():
     collection=[]
@@ -97,11 +157,11 @@ def map_perm_to_each_file(activity,content):
     tempMapping=[]
     global functionsBasedOnPermissionMappingInitial
 
-    tree = javalang.parse.parse(content)
-    name = next(klass.name for klass in tree.types
-    if isinstance(klass, javalang.tree.ClassDeclaration)
-        for m in klass.methods
-            print("So function names = ",m)
+    #tree = javalang.parse.parse(content)
+    #name = next(klass.name for klass in tree.types
+    #if isinstance(klass, javalang.tree.ClassDeclaration)
+        #for m in klass.methods
+            #print("So function names = ",m)
             #if m.name == 'main' and m.modifiers.issuperset({'public', 'static'}))
     
     for c in content:
