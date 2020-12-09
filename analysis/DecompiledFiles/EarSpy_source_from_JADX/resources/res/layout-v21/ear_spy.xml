@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:ads="http://schemas.android.com/apk/res-auto" android:theme="@style/Theme.AppCompat" android:orientation="vertical" android:background="@drawable/background" android:layout_width="match_parent" android:layout_height="match_parent">
+    <android.support.p003v7.widget.Toolbar android:theme="@style/ThemeOverlay.AppCompat.ActionBar" android:textSize="28dp" android:textStyle="bold" android:textColor="#ff0000" android:gravity="center" android:layout_gravity="center" android:id="@+id/my_toolbar" android:background="?attr/colorPrimary" android:layout_width="match_parent" android:layout_height="?attr/actionBarSize" android:text="@string/ear_spy_title" android:elevation="4dp">
+        <TextView android:textSize="28dp" android:textStyle="bold" android:textColor="#ff0000" android:gravity="center" android:layout_gravity="center" android:id="@+id/txt_earspy" android:layout_width="match_parent" android:layout_height="40dp" android:text="@string/ear_spy_title" android:layout_centerHorizontal="true"/>
+    </android.support.p003v7.widget.Toolbar>
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="40dp">
+        <LinearLayout android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1">
+            <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView android:textSize="14dp" android:textColor="#fff" android:layout_gravity="left|center_vertical|center_horizontal|center" android:id="@+id/txt_audiovolume" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="15dp" android:layout_marginTop="60dp" android:text="@string/audio_volume"/>
+                <RelativeLayout android:id="@+id/layout_audio_mic" android:layout_width="wrap_content" android:layout_height="match_parent">
+                    <LinearLayout android:orientation="vertical" android:id="@+id/LinearLayout_audio" android:background="@drawable/black_line" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_marginLeft="17dp" android:layout_marginTop="20dp" android:layout_marginBottom="10dp">
+                        <com.microphone.earspy.VerticalSeekBar android:layout_gravity="center" android:id="@+id/SeekBar_audio" android:scrollbars="vertical" android:layout_width="wrap_content" android:layout_height="match_parent" android:indeterminateOnly="false" android:progressDrawable="@drawable/red_progress_clip" android:thumb="@drawable/thumb_selector" android:thumbOffset="10dp"/>
+                    </LinearLayout>
+                    <LinearLayout android:orientation="vertical" android:id="@+id/LinearLayout_mic" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_marginTop="30dp" android:layout_marginRight="15dp" android:layout_marginBottom="20dp" android:layout_alignParentRight="true">
+                        <com.microphone.earspy.VerticalSeekBar android:layout_gravity="center" android:id="@+id/SeekBar_mic" android:visibility="gone" android:scrollbars="vertical" android:layout_width="wrap_content" android:layout_height="match_parent" android:indeterminateOnly="false" android:progressDrawable="@drawable/red_progress_clip" android:thumb="@drawable/thumb_selector" android:thumbOffset="10dp"/>
+                    </LinearLayout>
+                </RelativeLayout>
+                <FrameLayout android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_centerHorizontal="true" android:layout_centerVertical="true">
+                    <Button android:layout_gravity="center" android:id="@+id/RecordButton1" android:background="@drawable/b1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerHorizontal="true" android:layout_centerVertical="true"/>
+                    <Button android:layout_gravity="center" android:id="@+id/RecordButton2" android:background="@drawable/b2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerHorizontal="true" android:layout_centerVertical="true"/>
+                    <Button android:layout_gravity="center" android:id="@+id/RecordButton3" android:background="@drawable/b3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerHorizontal="true" android:layout_centerVertical="true"/>
+                    <Button android:layout_gravity="center" android:id="@+id/RecordButton4" android:background="@drawable/b4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerHorizontal="true" android:layout_centerVertical="true"/>
+                    <Button android:layout_gravity="center" android:id="@+id/RecordButton5" android:background="@drawable/b5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerHorizontal="true" android:layout_centerVertical="true"/>
+                    <Button android:layout_gravity="center" android:id="@+id/RecordButton6" android:background="@drawable/b6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerHorizontal="true" android:layout_centerVertical="true"/>
+                    <Button android:layout_gravity="center" android:id="@+id/RecordButton7" android:background="@drawable/b7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerHorizontal="true" android:layout_centerVertical="true"/>
+                </FrameLayout>
+                <LinearLayout android:orientation="vertical" android:id="@+id/visualLine" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                    <TextView android:textSize="16dp" android:textColor="#fff" android:layout_gravity="right|center_vertical|center_horizontal|center" android:id="@+id/txt_micovolume" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="50dp" android:layout_marginRight="20dp"/>
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+        <LinearLayout android:orientation="vertical" android:paddingBottom="10dp" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_weight="1">
+            <RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                <LinearLayout android:orientation="vertical" android:id="@+id/linear_equlizer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="30dp">
+                    <TextView android:textSize="16dp" android:textColor="#fff" android:layout_gravity="center" android:id="@+id/txt_equlizer" android:paddingLeft="5dp" android:paddingRight="5dp" android:paddingBottom="2dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/equalizer" android:layout_weight="1"/>
+                    <View android:id="@+id/view_eq" android:background="@color/red" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="4dp"/>
+                </LinearLayout>
+                <LinearLayout android:orientation="vertical" android:id="@+id/linear_add_features_button" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:layout_toRightOf="@+id/linear_effects">
+                    <Button android:textSize="15dp" android:textColor="@color/red" android:layout_gravity="right" android:id="@+id/btnAddFeaturesFromHome" android:background="@drawable/bg_selector" android:paddingLeft="5dp" android:paddingRight="5dp" android:paddingBottom="2dp" android:layout_width="wrap_content" android:layout_height="30dp" android:text="@string/add_features"/>
+                </LinearLayout>
+                <LinearLayout android:orientation="vertical" android:id="@+id/linear_effects" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:layout_toRightOf="@+id/linear_equlizer">
+                    <TextView android:textSize="16dp" android:textColor="#fff" android:layout_gravity="center" android:id="@+id/txt_effects" android:paddingLeft="5dp" android:paddingRight="5dp" android:paddingBottom="2dp" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/other_effects"/>
+                    <View android:id="@+id/view_effects" android:background="@color/red" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="4dp"/>
+                </LinearLayout>
+                <View android:id="@+id/view_line" android:background="@color/red" android:visibility="invisible" android:layout_width="match_parent" android:layout_height="2dp" android:layout_marginLeft="30dp" android:layout_marginRight="15dp" android:layout_below="@+id/linear_equlizer"/>
+                <ImageView android:id="@+id/scroll_left" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10dp" android:src="@drawable/scroll_left" android:layout_toLeftOf="@+id/scroll_right"/>
+                <ImageView android:id="@+id/scroll_right" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="10dp" android:src="@drawable/scroll_right" android:layout_alignParentRight="true"/>
+            </RelativeLayout>
+            <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="5dp" android:layout_below="@+id/equlizer">
+                <com.microphone.earspy.view.CustomViewFlipper android:id="@+id/view_flipper" android:layout_width="match_parent" android:layout_height="match_parent">
+                    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
+                        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true">
+                            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="30dp" android:src="@drawable/dotes"/>
+                        </LinearLayout>
+                        <HorizontalScrollView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true">
+                            <LinearLayout android:orientation="horizontal" android:id="@+id/equalizer_container" android:layout_width="match_parent" android:layout_height="match_parent" android:weightSum="1" android:layout_centerHorizontal="true"/>
+                        </HorizontalScrollView>
+                    </RelativeLayout>
+                    <RelativeLayout android:orientation="horizontal" android:id="@+id/effects_container" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="10dp">
+                        <LinearLayout android:orientation="vertical" android:id="@+id/bass_group" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toLeftOf="@+id/other_effect_group">
+                            <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerHorizontal="true">
+                                <ImageView android:id="@+id/bass_circle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img"/>
+                                <ImageView android:id="@+id/bass1" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img5"/>
+                                <ImageView android:id="@+id/bass2" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img4"/>
+                                <ImageView android:id="@+id/bass3" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img3"/>
+                                <ImageView android:id="@+id/bass4" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img2"/>
+                                <ImageView android:id="@+id/bass5" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img1"/>
+                            </RelativeLayout>
+                            <TextView android:textSize="16dp" android:textColor="#fff" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="Bass"/>
+                            <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:layout_centerHorizontal="true">
+                                <ImageView android:id="@+id/vr_circle" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img"/>
+                                <ImageView android:id="@+id/vr1" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img5"/>
+                                <ImageView android:id="@+id/vr2" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img4"/>
+                                <ImageView android:id="@+id/vr3" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img3"/>
+                                <ImageView android:id="@+id/vr4" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img2"/>
+                                <ImageView android:id="@+id/vr5" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/img1"/>
+                            </RelativeLayout>
+                            <TextView android:textSize="16dp" android:textColor="#fff" android:gravity="center" android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="VR"/>
+                        </LinearLayout>
+                        <LinearLayout android:orientation="vertical" android:id="@+id/other_effect_group" android:paddingRight="40dp" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="40dp" android:layout_marginTop="10dp" android:layout_centerHorizontal="true">
+                            <LinearLayout android:orientation="vertical" android:id="@+id/echo_group" android:layout_width="wrap_content" android:layout_height="wrap_content">
+                                <TextView android:textSize="16dp" android:textColor="#fff" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="AEC"/>
+                                <View android:id="@+id/img_echo" android:background="@color/red" android:layout_width="match_parent" android:layout_height="4dp"/>
+                            </LinearLayout>
+                            <LinearLayout android:orientation="vertical" android:id="@+id/gain_group" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10dp">
+                                <TextView android:textSize="16dp" android:textColor="#fff" android:gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="AGC"/>
+                                <View android:id="@+id/img_gain" android:background="@color/red" android:layout_width="match_parent" android:layout_height="4dp"/>
+                            </LinearLayout>
+                            <LinearLayout android:orientation="vertical" android:id="@+id/noise_group" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10dp">
+                                <TextView android:textSize="16dp" android:textColor="#fff" android:layout_gravity="center" android:paddingLeft="3dp" android:paddingRight="3dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="5dp" android:text="NS"/>
+                                <View android:id="@+id/img_noise" android:background="@color/red" android:layout_width="match_parent" android:layout_height="4dp"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout android:gravity="center" android:orientation="vertical" android:id="@+id/record_group" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_toRightOf="@+id/other_effect_group">
+                            <TextView android:textSize="16dp" android:textColor="@color/white" android:id="@+id/recording" android:paddingBottom="10dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/recording"/>
+                            <Button android:textSize="14dp" android:textColor="#fff" android:layout_gravity="center" android:id="@+id/record" android:background="@drawable/record_bg" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                            <ImageView android:id="@+id/anim" android:visibility="gone" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_centerInParent="true"/>
+                            <Button android:textSize="14dp" android:textColor="#fff" android:gravity="right|center_vertical|center_horizontal|center" android:layout_gravity="center" android:id="@+id/stop" android:background="@drawable/push_lite" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20dp"/>
+                        </LinearLayout>
+                    </RelativeLayout>
+                </com.microphone.earspy.view.CustomViewFlipper>
+            </FrameLayout>
+        </LinearLayout>
+        <FrameLayout android:id="@+id/adParent" android:layout_width="match_parent" android:layout_height="55dp" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true">
+            <LinearLayout android:gravity="center" android:id="@+id/relative_add" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <com.google.android.gms.ads.AdView android:id="@+id/adView" android:layout_width="match_parent" android:layout_height="match_parent" ads:adSize="SMART_BANNER" ads:adUnitId="ca-app-pub-7088873759995662/4829746832"/>
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
+</RelativeLayout>

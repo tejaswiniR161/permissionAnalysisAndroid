@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:ads="http://schemas.android.com/apk/res-auto" android:orientation="vertical" android:background="@color/light_gray" android:layout_width="match_parent" android:layout_height="match_parent">
+    <RelativeLayout android:background="#3c3731" android:paddingBottom="1dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <TextView android:textSize="30dp" android:textStyle="bold" android:textColor="#ff0000" android:gravity="center" android:layout_gravity="center" android:background="#1c1c1c" android:layout_width="match_parent" android:layout_height="40dp" android:layout_centerHorizontal="true"/>
+        <TextView android:textSize="30dp" android:textStyle="bold" android:textColor="#ff0000" android:gravity="center" android:layout_gravity="center" android:background="#1a1a1a" android:layout_width="match_parent" android:layout_height="20dp" android:layout_marginTop="20dp" android:layout_centerHorizontal="true"/>
+        <TextView android:textSize="28dp" android:textStyle="bold" android:textColor="#ff0000" android:gravity="center" android:layout_gravity="center" android:id="@+id/txt_title" android:layout_width="match_parent" android:layout_height="40dp" android:text="@string/mp3_gallery" android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+    <ViewSwitcher android:id="@+id/view_switcher" android:layout_width="match_parent" android:layout_height="match_parent">
+        <ProgressBar android:layout_gravity="center" android:id="@+id/progress" android:layout_width="40dp" android:layout_height="40dp"/>
+        <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent">
+            <ListView android:id="@+id/list" android:fadingEdge="none" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <TextView android:textSize="20dp" android:textColor="#fff" android:layout_gravity="center" android:id="@+id/txtNo" android:visibility="invisible" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="No Record Found"/>
+        </FrameLayout>
+    </ViewSwitcher>
+</LinearLayout>

@@ -1,0 +1,5 @@
+package com.microphone.earspy.inappbilling;
+
+public class AppProperties {
+    public static final String BASE_64_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEApTph6bKy+zS7GmN4feVAQJK4v0EmfbjuRmmUkvVGz79N/LcpRzednni49KpmdMQYQQJdNzwVL4vDoGO9pF7p2FW04/mZ1afiW2rwmQAyyM2E21QnvtZLa1d9fF1tU1r3XFcgWduXJvaLt+7wotTBPbcYLtw1yeu1P+EuenODfAcQY8AERyHEyNR4C2y2tNEZyRh6ME9MLR5PHkW6RdLvOrR0mxdV+jncoL6WVQ+CefxPhtTlAPpHzvHTCisW8k6ZwEb/9bBvvCnI4f6DYDQX815k+lgbMrmnoljDtZS1l4Xm8MiE6LNJhv/Mhd7Yi0uH5NCZYTDUcMn7JZkRiUlPKQIDAQAB";
+}
