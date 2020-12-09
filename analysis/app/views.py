@@ -3,6 +3,7 @@ from django.http import HttpResponse
 import os
 import xml.dom.minidom
 import xml.etree.ElementTree as ET
+import javalang
 
 AXplore = open('./Permissions/Axplore_Permission.txt', 'r') 
 AXploreLines = AXplore.readlines() 
@@ -23,13 +24,17 @@ unopenableActivityJava=[]
 openableActivityJava=[]
 AppName="EarSpy_source_from_JADX"
 
+activityMappingNames={}
+activityMappingPermissions={}
+activityMappingFunctions=[]
+
 def index(request):
     print("cwd = ",os.getcwd())
     #MODIFY_PHONE_STATE
-    ans=read_and_map("CAMERA")
+    #ans=read_and_map("CAMERA")
     parse_manifest()
     gather_permissions_per_activity()
-    return render(request,'index.html',{"ans":listOfActivities})
+    return render(request,'index.html',{"ans":activityMappingPermissions})
 
 def gather_permissions_per_activity():
     collection=[]
@@ -41,10 +46,11 @@ def gather_permissions_per_activity():
     #print("sources path = ",sourcesPath)
 
     for activity in listOfActivities:
+        found=0
         initialpath=activity.split(".")
         realFileName=initialpath[len(initialpath)-1]
         realFileName+=".java"
-        print("real file name = ",realFileName)
+        #print("real file name = ",realFileName)
         transformedPath="/".join(initialpath)
         filePath=sourcesPath+transformedPath
         #if os.path.exists(os.path.join(os.getcwd(), 'new_folder', 'file.txt'))
@@ -57,19 +63,29 @@ def gather_permissions_per_activity():
             if realFileName in x[2]:
                 #print("Found it! ")
                 relativeFilePath=x[0]+"/"+realFileName
-                print("File path = ",relativeFilePath)
+                #print("File path = ",relativeFilePath)
                 collection.append(relativeFilePath)
+                found=1
                 break
-        try:
-            currentFile=open(relativeFilePath)
-            content=currentFile.readlines()
-            openableActivityJava.append(filePath)
-        except Exception as e:
-            print("List of unopenable activity java files ++ ",e)
-            unopenableActivityJava.append(filePath)
+
+        if found==1:
+            try:
+                currentFile=open(relativeFilePath)
+                content=currentFile.readlines()
+                openableActivityJava.append(activity)
+                
+                #looking for used permission in each activity and tracking functions
+                activityMappingPermissions[activity]=map_perm_to_each_file(activity,content)
+
+                #print("activity = ",activity)
+                #print("temp map = ",temp_map)
+
+            except Exception as e:
+                #print("List of unopenable activity java files ++ ",e)
+                unopenableActivityJava.append(relativeFilePath)
 
     if len(collection)<len(listOfActivities):
-        print("Not all files were found! ")
+        #print("Not all files were found! ")
         print("There are missing files and count = ",len(listOfActivities)-len(collection))
 
         
@@ -77,7 +93,42 @@ def gather_permissions_per_activity():
     #print("not able to open = ",unopenableActivityJava) 
     #./DecompiledFiles/EarSpy_source_from_JADX/sources/com/microphone/earspy/SplashScree
 
-        
+def map_perm_to_each_file(activity,content):
+    tempMapping=[]
+    global functionsBasedOnPermissionMappingInitial
+
+    tree = javalang.parse.parse(content)
+    name = next(klass.name for klass in tree.types
+    if isinstance(klass, javalang.tree.ClassDeclaration)
+        for m in klass.methods
+            print("So function names = ",m)
+            #if m.name == 'main' and m.modifiers.issuperset({'public', 'static'}))
+    
+    for c in content:
+        if c.find("import")!=-1:
+            
+            #import com.facebook.ads.AdError;
+            importStatementJava=c[7:c.find(";")]
+            #print("imports found",functionsBasedOnPermissionMappingInitial)
+            for p in functionsBasedOnPermissionMappingInitial:
+                #print("what = ",functionsBasedOnPermissionMappingInitial[p])
+                for f in functionsBasedOnPermissionMappingInitial[p]:
+                    if f.find(importStatementJava.strip()) and p not in tempMapping:
+                        #print("lalalalalalalallalalalalalalala")
+                        tempMapping.append(p)
+
+
+            """ 
+            for key,value in functionsBasedOnPermissionMappingInitial:
+                for v in value:
+                    print("lala?")
+                    if v.find(importStatementJava.strip()):
+                        print("here? here?")
+                        tempMapping.append(key) 
+                        """
+    return tempMapping
+
+                              
 
 def parse_manifest():
     DecompiledPath="DecompiledFiles"
