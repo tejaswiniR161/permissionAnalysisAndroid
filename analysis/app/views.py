@@ -1,15 +1,18 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import JsonResponse
 import os
 import xml.dom.minidom
 import xml.etree.ElementTree as ET
 import javalang
+
 
 AXplore = open('./Permissions/Axplore_Permission.txt', 'r') 
 AXploreLines = AXplore.readlines() 
 PScout = open('./Permissions/PScout_Permission.txt', 'r') 
 PScoutLines = PScout.readlines() 
 
+missingActivities=0
 listOfPermissions=[]
 PermissionLevels={}
 listOfCustomPermissions=[]
@@ -28,6 +31,29 @@ AppName="EarSpy_source_from_JADX"
 activityMappingNames={}
 activityMappingPermissions={}
 activityMappingFunctions=[]
+def uiInfo(request):
+    #print("cwd = ",os.getcwd())
+    global listOfPermissions
+    global listOfPermissions
+    global listOfCustomPermissions
+    global protectionLevelForCustomPermissions
+    global listOfServices
+    global listOfActivities
+    global listOfReceivers
+    global activityMapping
+    #global activityPermissions
+    global functionsBasedOnPermissionMappingInitial
+    global relativeDecompiledPath
+    global unopenableActivityJava
+    global openableActivityJava
+
+    global activityMappingNames
+    global activityMappingPermissions
+    global activityMappingFunctions
+    global missingActivities
+    response = JsonResponse({"activityMapping":activityMapping,"activityMappingPermissions":activityMappingPermissions,"listOfPermissionLevels":PermissionLevels,"listOfPermissions":listOfPermissions,"missingActivities":missingActivities,"listOfActivities":listOfActivities})
+    return response
+    #return render(request,{"activityMapping":activityMapping,"activityMappingPermissions":activityMappingPermissions,"listOfPermissionLevels":PermissionLevels,"listOfPermissions":listOfPermissions})
 
 def index(request):
     #print("cwd = ",os.getcwd())
@@ -48,7 +74,7 @@ def index(request):
     global activityMappingNames
     global activityMappingPermissions
     global activityMappingFunctions
-
+    global missingActivities
 
     listOfPermissions=[]
     listOfCustomPermissions=[]
@@ -92,7 +118,12 @@ def find_security_per_permission():
         if found==1:
             PermissionLevels[permission]=level[0].strip()
         else:
-            PermissionLevels[permission]="notfound"
+            if permission in listOfCustomPermissions:
+                ind=listOfCustomPermissions.index(permission)
+                val=protectionLevelForCustomPermissions[ind]
+                PermissionLevels[permission]="Custom - "+val
+            else:
+                PermissionLevels[permission]="notfound"
                 
 
 
@@ -147,7 +178,8 @@ def gather_permissions_per_activity():
     if len(collection)<len(listOfActivities):
         #print("Not all files were found! ")
         print("There are missing files and count = ",len(listOfActivities)-len(collection))
-
+    global missingActivities
+    missingActivities=len(listOfActivities)-len(collection)
         
     #print("openable files = ",openableActivityJava)
     #print("not able to open = ",unopenableActivityJava) 

@@ -1,10 +1,61 @@
 <html>
-    <script type="text/javascript"> 
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script>
+            $(function()
+            {
+
+                console.log("Onload!");
+                $.get("/app/ui", function(data, status)
+                {
+                    console.log("Data: " + data + "\nStatus: " + status);
+
+                    $("#tracked").html(""+data.listOfActivities.length - data.missingActivities);
+                    $("#untracked").html(""+data.missingActivities);
+                    //val(parseInt(data.listOfActivities.length)-parseInt(data.missingActivities))
+
+
+                    /* var graphData = [{
+                                    x: ['giraffes', 'orangutans', 'monkeys'],
+                                    y: [20, 14, 23],
+                                    type: 'bar'
+                                    }];
+                    
+                    //Plotly.newPlot('myDiv', graphData);
+
+                    var pieChart1 = [{
+                                values: [data.listOfActivities.length-data.missingActivities, data.missingActivities],
+                                labels: ['Tracked Activities', 'Untracked Activities'],
+                                type: 'pie'
+                                    }];
+
+                    var layout = {height: 400,width: 500};
+                    $("#graphs").append("<div id='pieChart1'>  </div>")
+                    Plotly.newPlot('pieChart1', pieChart1, layout); */
+                });
+
+            });
+
+        </script>
+    </head>
+    <!-- <script type="text/javascript"> 
         var listOfPermissionLevels = "{{listOfPermissionLevels}}";
         console.log(listOfPermissionLevels);
-     </script>
+     </script> -->
      
-    <body>
+    <body class="container">
         <h1>Activity Mapping</h1>
         {{activityMapping}}
         <br/>
@@ -14,5 +65,21 @@
         <h1>Levels of security for permisisons</h1>
         {{listOfPermissionLevels}}
         <!-- {{listOfPermissions}} -->
+        <div id="uiElements">
+
+            <div id="activities">
+                <h5 id="tracked" class='text-primary'>
+
+                </h5>
+                <h5 id="untracked" class="text-danger">
+
+                </h5>
+            </div>
+
+            <div id="permissions">
+
+            </div>
+
+        </div>
     </body>
 </html>
