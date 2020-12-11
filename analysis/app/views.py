@@ -123,7 +123,7 @@ def find_security_per_permission():
                 val=protectionLevelForCustomPermissions[ind]
                 PermissionLevels[permission]="Custom - "+val
             else:
-                PermissionLevels[permission]="notfound"
+                PermissionLevels[permission]="not found"
                 
 
 
