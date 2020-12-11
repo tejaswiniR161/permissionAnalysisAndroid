@@ -51,7 +51,7 @@ def uiInfo(request):
     global activityMappingPermissions
     global activityMappingFunctions
     global missingActivities
-    response = JsonResponse({"activityMapping":activityMapping,"activityMappingPermissions":activityMappingPermissions,"listOfPermissionLevels":PermissionLevels,"listOfPermissions":listOfPermissions,"missingActivities":missingActivities,"listOfActivities":listOfActivities})
+    response = JsonResponse({"activityMapping":activityMapping,"activityMappingPermissions":activityMappingPermissions,"listOfPermissionLevels":PermissionLevels,"listOfPermissions":listOfPermissions,"missingActivities":missingActivities,"listOfActivities":listOfActivities,"listOfServices":listOfServices})
     return response
     #return render(request,{"activityMapping":activityMapping,"activityMappingPermissions":activityMappingPermissions,"listOfPermissionLevels":PermissionLevels,"listOfPermissions":listOfPermissions})
 
@@ -100,7 +100,7 @@ def index(request):
 
     find_security_per_permission()
 
-    return render(request,'index.html',{"activityMapping":activityMapping,"activityMappingPermissions":activityMappingPermissions,"listOfPermissionLevels":PermissionLevels,"listOfPermissions":listOfPermissions})
+    return render(request,'index.html',{"activityMapping":activityMapping,"activityMappingPermissions":activityMappingPermissions,"listOfPermissionLevels":PermissionLevels,"listOfPermissions":listOfPermissions,"listOfServices":listOfServices})
 
 def find_security_per_permission():
     securityPermissionFile=open("./securityLevelPermissions.txt")
@@ -261,9 +261,12 @@ def parser(filename):
     androidPermissions = doc.getElementsByTagName("uses-permission")
     customPermissions = doc.getElementsByTagName("permission")
     activities = doc.getElementsByTagName("activity")
+    services=doc.getElementsByTagName("service")
     for permission in androidPermissions:
         #print(permission.getAttribute("android:name"))
         listOfPermissions.append(permission.getAttribute("android:name"))
+    for service in services:
+        listOfServices.append(service.getAttribute("android:name"))
     for permission in customPermissions:
         #print(permission.getAttribute("android:name"))
         #print(permission.getAttribute("android:protectionLevel"))

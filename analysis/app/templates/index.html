@@ -37,28 +37,71 @@
                     {
                         tableContent+="<tr><td>"+key+"</td><td>"+data.listOfPermissionLevels[key].toUpperCase()+"</td></tr>";
                     }
+                    //tableContent.append("</table>");
                     $("#permissionsContainer").append(tableContent);
+
+                    var mappingContent=`<table class="table table-hover" id="mappingContent">
+                        <thead>
+                        <tr>
+                            <th>Activity</th>
+                            <th>Action</th>
+                            <th>Category</th>
+                        </tr>
+                        </thead>
+                        <tbody>`;
+                    for(var key in data.activityMapping)
+                    {
+                        mappingContent+="<tr><td>"+key+"</td><td>"+data.activityMapping[key][0]["action"]+"</td><td>"+data.activityMapping[key][0]["category"]+"</td></tr>";
+                        /* for(var v in data.activityMapping[key])
+                        {
+                            mappingContent+=v+"</td></tr>";
+                        } */
+                    }
+                    //tableContent.append("</tbody></table>");
+                    $("#activityMapping").append(mappingContent);
                     
-                    //val(parseInt(data.listOfActivities.length)-parseInt(data.missingActivities))
 
+                    var servicesTable=`<table class="table table-hover" id="servicesTable">
+                        <thead>
+                        <tr>
+                            <th>Services</th>
+                        </tr>
+                        </thead>
+                        <tbody>`;
+                    for(var key in data.listOfServices)
+                    {
+                        servicesTable+="<tr><td>"+data.listOfServices[key]+"</td></tr>";
+                    }
+                    //tableContent.append("</table>");
+                    $("#services").append(servicesTable);
 
-                    /* var graphData = [{
-                                    x: ['giraffes', 'orangutans', 'monkeys'],
-                                    y: [20, 14, 23],
-                                    type: 'bar'
-                                    }];
                     
-                    //Plotly.newPlot('myDiv', graphData);
+                    var activityPermissionMapping=`<table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Activity</th>
+                            <th>Permissions</th>
+                        </tr>
+                        </thead>
+                        <tbody>`;
+                    for(var key in data.activityMappingPermissions)
+                    {
+                        activityPermissionMapping+="<tr><td>"+key+"</td><td>";
 
-                    var pieChart1 = [{
-                                values: [data.listOfActivities.length-data.missingActivities, data.missingActivities],
-                                labels: ['Tracked Activities', 'Untracked Activities'],
-                                type: 'pie'
-                                    }];
+                        for(var val in data.activityMappingPermissions[key])
+                        {
+                            activityPermissionMapping+=data.activityMappingPermissions[key][val]+"<br/>"
+                        }
+                        activityPermissionMapping+="</td></tr>";
 
-                    var layout = {height: 400,width: 500};
-                    $("#graphs").append("<div id='pieChart1'>  </div>")
-                    Plotly.newPlot('pieChart1', pieChart1, layout); */
+                        /* for(var v in data.activityMapping[key])
+                        {
+                            mappingContent+=v+"</td></tr>";
+                        } */
+                    }
+                    //tableContent.append("</tbody></table>");
+                    $("#activityPermissionMapping").append(activityPermissionMapping);
+        
                 });
 
             });
@@ -71,16 +114,21 @@
      </script> -->
      
     <body class="container">
-        <h1>Activity Mapping</h1>
-        {{activityMapping}}
-        <br/>
-        <h1>Activity based permission mapping</h1>
+        <!-- <h1>Activity based permission mapping</h1>
         {{activityMappingPermissions}}
-        <br/>
-        <h1>Levels of security for permisisons</h1>
-        {{listOfPermissionLevels}}
+        <br/> -->
+        <!-- <h1>Levels of security for permisisons</h1>
+        {{listOfPermissionLevels}} -->
         <!-- {{listOfPermissions}} -->
-        <div id="uiElements">
+        <div id="uiElements">           
+
+            <br/>
+            <br/>
+            <br/>
+
+            <div id="permissionsContainer">
+                <h3>List of permissions the application uses</h3>    
+            </div>
 
             <div id="activities">
                 <h3> Information about the activities</h3>
@@ -90,11 +138,24 @@
                 <h5 id="untracked" class="text-danger">
 
                 </h5>
+                
             </div>
 
-            <div id="permissionsContainer">
-                <h3>List of permissions the application uses</h3>
-                
+            <div id="activityMapping">
+                <h3>Activity Mapping is shown below</h3>
+                <h5>
+                    android.intent.action.MAIN means that this activity is the entry point of the application android.intent.category.DEFAULT is mainly used for implicit intents
+                </h5>
+            </div>
+
+            <div id="services">
+                <h3>
+                    The list of services used by the application is listed below
+                </h3>
+            </div>
+            
+            <div id="activityPermissionMapping">
+                <h3>The mapping of permissions with respect to the activities</h3>
             </div>
 
         </div>
