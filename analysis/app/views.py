@@ -6,7 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 import os
 import xml.dom.minidom
 import xml.etree.ElementTree as ET
-import javalang
+#import javalang
 
 
 AXplore = open('./Permissions/Axplore_Permission.txt', 'r') 
