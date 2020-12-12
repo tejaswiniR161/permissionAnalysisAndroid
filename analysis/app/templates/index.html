@@ -115,7 +115,7 @@
             {
                 margin:1%;
             }
-            #activities,#permissionsContainer,#activityPermissionMapping,#services,#activityMapping
+            #activities,#permissionsContainer,#activityPermissionMapping,#services,#activityMapping,#appSelection
             {
                 margin-top:4%;
             }
@@ -130,23 +130,22 @@
                     The results are with respect to "{{AppName}}" android application. 
                     <br/>
                     <a href="/app/select"> 
-                        To choose a different application please chick here
+                        To choose a different application please click here
                     </a>
                 </h3>
             </div>
             <div id="activities">
                 <h3> Information about the activities</h3>
                 <h5 id="tracked">
-
                 </h5>
                 <h5 id="untracked">
-
                 </h5>
                 
             </div>
 
             <div id="permissionsContainer">
                 <h3>List of permissions the application uses</h3>    
+                <p>If your application uses both SYSTEM_ALERT_WINDOW and BIND_ACCESSIBILITY_SERVICE please be aware that it is possible to capture all your information and leave no trace behind. Refer the related work section of the report for more information</p>
             </div>
 
             <div id="activityPermissionMapping">

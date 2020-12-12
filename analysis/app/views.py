@@ -53,7 +53,9 @@ def uiInfo(request):
     global activityMappingPermissions
     global activityMappingFunctions
     global missingActivities
+    global AppName
     response = JsonResponse({"activityMapping":activityMapping,"activityMappingPermissions":activityMappingPermissions,"listOfPermissionLevels":PermissionLevels,"listOfPermissions":listOfPermissions,"missingActivities":missingActivities,"listOfActivities":listOfActivities,"listOfServices":listOfServices,"AppName":AppName})
+    AppName="EarSpy"
     return response
     #return render(request,{"activityMapping":activityMapping,"activityMappingPermissions":activityMappingPermissions,"listOfPermissionLevels":PermissionLevels,"listOfPermissions":listOfPermissions})
 
