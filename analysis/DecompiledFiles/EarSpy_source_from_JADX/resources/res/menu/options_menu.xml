@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:ads="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/add_feature" android:orderInCategory="100" android:title="@string/add_features"/>
-    <item android:id="@+id/save" android:orderInCategory="101" android:title="@string/save_configuration"/>
-    <item android:id="@+id/load" android:orderInCategory="102" android:title="@string/load_configuration"/>
-    <item android:id="@+id/spytraining" android:orderInCategory="103" android:title="@string/spy_training"/>
-    <item android:id="@+id/more_optoins" android:orderInCategory="105" android:title="@string/more_options"/>
-</menu>

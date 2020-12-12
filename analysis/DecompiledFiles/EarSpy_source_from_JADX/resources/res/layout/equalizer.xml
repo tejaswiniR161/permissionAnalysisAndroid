@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:ads="http://schemas.android.com/apk/res-auto" android:orientation="vertical" android:id="@+id/Linear01" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_weight="1">
-    <LinearLayout android:orientation="vertical" android:id="@+id/LinearLayout01" android:background="@drawable/black_line" android:layout_width="wrap_content" android:layout_height="match_parent" android:layout_weight="1">
-        <com.microphone.earspy.VerticalSeekBar android:id="@+id/SeekBar01" android:background="@drawable/red_line_selector" android:scrollbars="vertical" android:layout_width="wrap_content" android:layout_height="match_parent" android:progress="50" android:progressDrawable="@drawable/red_line_selector" android:thumb="@drawable/thumb_selector" android:layout_weight="1"/>
-    </LinearLayout>
-    <TextView android:textColor="#fff" android:gravity="center" android:id="@+id/txt_equ1" android:background="@drawable/btn_bottom" android:paddingTop="10dp" android:paddingBottom="5dp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="60"/>
-</LinearLayout>
