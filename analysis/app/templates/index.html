@@ -1,7 +1,7 @@
 <html>
     <head>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -13,11 +13,13 @@
 
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
         <script>
             $(function()
             {
 
                 console.log("Onload!");
+                //$.post(URL,data,callback);
                 $.get("/app/ui", function(data, status)
                 {
                     console.log("Data: " + data + "\nStatus: " + status);
@@ -29,7 +31,7 @@
                         <thead>
                         <tr>
                             <th>Permission</th>
-                            <th>Security Level</th>
+                            <th>Protection Level</th>
                         </tr>
                         </thead>
                         <tbody>`;
@@ -126,10 +128,6 @@
             <br/>
             <br/>
 
-            <div id="permissionsContainer">
-                <h3>List of permissions the application uses</h3>    
-            </div>
-
             <div id="activities">
                 <h3> Information about the activities</h3>
                 <h5 id="tracked" class='text-primary'>
@@ -141,11 +139,12 @@
                 
             </div>
 
-            <div id="activityMapping">
-                <h3>Activity Mapping is shown below</h3>
-                <h5>
-                    android.intent.action.MAIN means that this activity is the entry point of the application android.intent.category.DEFAULT is mainly used for implicit intents
-                </h5>
+            <div id="permissionsContainer">
+                <h3>List of permissions the application uses</h3>    
+            </div>
+
+            <div id="activityPermissionMapping">
+                <h3>The mapping of permissions with respect to the activities. These results are the best extimates made with the imports done in the java source code files</h3>
             </div>
 
             <div id="services">
@@ -153,9 +152,12 @@
                     The list of services used by the application is listed below
                 </h3>
             </div>
-            
-            <div id="activityPermissionMapping">
-                <h3>The mapping of permissions with respect to the activities</h3>
+
+            <div id="activityMapping">
+                <h3>Activity Mapping is shown below</h3>
+                <h5>
+                    android.intent.action.MAIN means that this activity is the entry point of the application android.intent.category.DEFAULT is mainly used for implicit intents
+                </h5>
             </div>
 
         </div>
