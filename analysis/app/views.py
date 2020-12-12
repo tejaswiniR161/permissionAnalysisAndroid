@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
 import os
 import xml.dom.minidom
 import xml.etree.ElementTree as ET
@@ -57,6 +59,7 @@ def uiInfo(request):
 
 def index(request):
     #print("cwd = ",os.getcwd())
+    print("AppName = ",AppName)
     global listOfPermissions
     global listOfPermissions
     global listOfCustomPermissions
@@ -101,6 +104,18 @@ def index(request):
     find_security_per_permission()
 
     return render(request,'index.html',{"activityMapping":activityMapping,"activityMappingPermissions":activityMappingPermissions,"listOfPermissionLevels":PermissionLevels,"listOfPermissions":listOfPermissions,"listOfServices":listOfServices})
+
+def select(request):
+    return render(request,'selection.html')
+
+@csrf_exempt 
+def saveName(request):
+    global AppName
+    AppName=request.POST.get("name", "")
+    print(request.POST.get("name", ""))
+    #print(request.GET.get("name"))
+    #request.GET.get('q', '').
+    return JsonResponse({'success':False, 'errorMsg':"errorMsg"})
 
 def find_security_per_permission():
     securityPermissionFile=open("./securityLevelPermissions.txt")
@@ -237,20 +252,13 @@ def parse_manifest():
                 manifestFile=open(manifestPath+"/resources/AndroidManifest.xml")
                 manifestFile.close()
                 parser(manifestPath+"/resources/AndroidManifest.xml")
-                #if(len(manifestLines)>5):
-
-                #print("Content in here reading")
-                #print("permission tags gotten so far = ",listOfPermissions,listOfCustomPermissions,protectionLevelForCustomPermissions)
-
-                for i in listOfPermissions:
-                    functionsBasedOnPermissionMappingInitial[i]=read_and_map(i)
                 
-                #else:
-                    #print("Not much of content found so decompilation issues")
-                    #raise Exception("Content length too small")
+                for i in listOfPermissions:
+                    #print("i = ",i)
+                    functionsBasedOnPermissionMappingInitial[i]=read_and_map(i)
+                    #print(functionsBasedOnPermissionMappingInitial[i])
             except Exception as e:
-                print("Manifest file was not found! Sorry! Try a different application \n",str(e))
-                print("relative path was = analysis/DecompiledFiles/EarSpy_source_from_JADX/resources/AndroidManifest.xml")
+                print("error = ",str(e))
 
 def parser(filename):
     doc = xml.dom.minidom.parse(filename)
@@ -280,11 +288,16 @@ def parser(filename):
         curr_list=[]
         if len(intent_filter)>=1:
             for intent in intent_filter:
-                action=intent.getElementsByTagName("action")[0]
-                category=intent.getElementsByTagName("category")[0]
+                action=""
+                category=""
+                try:
+                    action=intent.getElementsByTagName("action")[0]
+                    category=intent.getElementsByTagName("category")[0]
                 #print("action = ",action.getAttribute("android:name"))
                 #print("category = ",category)
-                curr_list.append({"action":action.getAttribute("android:name"),"category":category.getAttribute("android:name")})
+                    curr_list.append({"action":action.getAttribute("android:name"),"category":category.getAttribute("android:name")})
+                except Exception as e:
+                    curr_list.append({"action":"","category":""})
             #print("intent-filter = ",intent_filter)
             activityMapping[activity.getAttribute("android:name")]=curr_list
             

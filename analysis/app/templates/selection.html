@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+        <!-- Popper JS -->
+<!--         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        
+        <script>
+            $(function()
+            {
+                $("button").click(function()
+                {
+                    var name=$(this).attr("id");
+                    $.post("/app/save",{"name":name}, function(data, status)
+                    {
+                        //alert(data);
+                        window.location="/app";
+                    });
+                });
+            });
+        </script>
+        </head>
+
+        <body class="container">
+            <br/>
+            <br/>
+            <br/>
+                <h2>
+                    Select the Adnroid Application you'd like the tool to analyze
+                </h2>
+
+                <button class="btn-primary form-control" id="EarSpy_source_from_JADX">EarSpy_source_from_JADX</button>
+                <button class="btn-primary form-control" id="Taobao">Taobao</button>
+                  
+            <br/>
+            <br/>
+            <br/>
+
+        </body>
+</html>
