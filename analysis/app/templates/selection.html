@@ -29,22 +29,28 @@
                 });
             });
         </script>
+        <style>
+            button, h2, h4{
+                margin:2%;
+            }
+        </style>
         </head>
 
-        <body class="container">
-            <br/>
-            <br/>
-            <br/>
+        <body>
+            <div class="container">
                 <h2>
-                    Select the Adnroid Application you'd like the tool to analyze
+                    Select the Android Application you'd like the tool to analyze,
                 </h2>
 
-                <button class="btn-primary form-control" id="EarSpy_source_from_JADX">EarSpy_source_from_JADX</button>
-                <button class="btn-primary form-control" id="Taobao">Taobao</button>
-                  
-            <br/>
-            <br/>
-            <br/>
+                <h4>
+                    (Depending on the size of the source code of the chosen application, the time for the tool to generate results will vary, Please be patient)
+                </h4>
 
+                <button class="btn btn-info form-control" id="EarSpy">EarSpy</button>
+                <button class="btn btn-info form-control" id="Taobao">Taobao</button>    
+                <button class="btn btn-info form-control" id="Telegram">Telegram</button>
+                <button class="btn btn-info form-control" id="BFinder">BFinder</button>  
+                <button class="btn btn-info form-control" id="Optimum">Optimum</button>
+            </div>
         </body>
 </html>

@@ -109,31 +109,37 @@
             });
 
         </script>
+
+        <style>
+            #uiElements
+            {
+                margin:1%;
+            }
+            #activities,#permissionsContainer,#activityPermissionMapping,#services,#activityMapping
+            {
+                margin-top:4%;
+            }
+        </style>
     </head>
-    <!-- <script type="text/javascript"> 
-        var listOfPermissionLevels = "{{listOfPermissionLevels}}";
-        console.log(listOfPermissionLevels);
-     </script> -->
      
-    <body class="container">
-        <!-- <h1>Activity based permission mapping</h1>
-        {{activityMappingPermissions}}
-        <br/> -->
-        <!-- <h1>Levels of security for permisisons</h1>
-        {{listOfPermissionLevels}} -->
-        <!-- {{listOfPermissions}} -->
+    <body>
+        <div class="container">
         <div id="uiElements">           
-
-            <br/>
-            <br/>
-            <br/>
-
+            <div id="appSelection">
+                <h3>
+                    The results are with respect to "{{AppName}}" android application. 
+                    <br/>
+                    <a href="/app/select"> 
+                        To choose a different application please chick here
+                    </a>
+                </h3>
+            </div>
             <div id="activities">
                 <h3> Information about the activities</h3>
-                <h5 id="tracked" class='text-primary'>
+                <h5 id="tracked">
 
                 </h5>
-                <h5 id="untracked" class="text-danger">
+                <h5 id="untracked">
 
                 </h5>
                 
@@ -160,6 +166,7 @@
                 </h5>
             </div>
 
+        </div>
         </div>
     </body>
 </html>

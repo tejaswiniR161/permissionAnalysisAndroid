@@ -28,7 +28,7 @@ functionsBasedOnPermissionMappingInitial={}
 relativeDecompiledPath=""
 unopenableActivityJava=[]
 openableActivityJava=[]
-AppName="EarSpy_source_from_JADX"
+AppName="EarSpy"
 
 activityMappingNames={}
 activityMappingPermissions={}
@@ -53,7 +53,7 @@ def uiInfo(request):
     global activityMappingPermissions
     global activityMappingFunctions
     global missingActivities
-    response = JsonResponse({"activityMapping":activityMapping,"activityMappingPermissions":activityMappingPermissions,"listOfPermissionLevels":PermissionLevels,"listOfPermissions":listOfPermissions,"missingActivities":missingActivities,"listOfActivities":listOfActivities,"listOfServices":listOfServices})
+    response = JsonResponse({"activityMapping":activityMapping,"activityMappingPermissions":activityMappingPermissions,"listOfPermissionLevels":PermissionLevels,"listOfPermissions":listOfPermissions,"missingActivities":missingActivities,"listOfActivities":listOfActivities,"listOfServices":listOfServices,"AppName":AppName})
     return response
     #return render(request,{"activityMapping":activityMapping,"activityMappingPermissions":activityMappingPermissions,"listOfPermissionLevels":PermissionLevels,"listOfPermissions":listOfPermissions})
 
@@ -103,7 +103,7 @@ def index(request):
 
     find_security_per_permission()
 
-    return render(request,'index.html',{"activityMapping":activityMapping,"activityMappingPermissions":activityMappingPermissions,"listOfPermissionLevels":PermissionLevels,"listOfPermissions":listOfPermissions,"listOfServices":listOfServices})
+    return render(request,'index.html',{"activityMapping":activityMapping,"activityMappingPermissions":activityMappingPermissions,"listOfPermissionLevels":PermissionLevels,"listOfPermissions":listOfPermissions,"listOfServices":listOfServices,"AppName":AppName})
 
 def select(request):
     return render(request,'selection.html')
